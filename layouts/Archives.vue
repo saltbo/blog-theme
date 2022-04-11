@@ -7,8 +7,7 @@
         <span class="flex-none text-gray-600 w-16 ml-3 lg:ml-6">{{ article.frontmatter.date | moment('MM-DD') }}</span>
         <router-link class="flex-grow truncate" :to="article.path">{{ article.title }}</router-link>
       </template>
-    </div>
-  </Card>
+    </div>  </Card>
 </template>
 
 <script>
@@ -18,6 +17,10 @@ export default {
   computed: {
     articles() {
       let posts = this.$site.pages.filter((item) => {
+        if (item.frontmatter.draft) {
+          return false
+        }
+
         return item.id == "post" || item.id == "note";
       });
       this.sortPostsByDate(posts);
@@ -36,7 +39,7 @@ export default {
       return posts;
     },
   },
-  mounted() {},
+  mounted() { },
 };
 </script>
 

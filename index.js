@@ -34,6 +34,15 @@ module.exports = themeConfig => {
         itemPermalink: '/:regular',
         frontmatter: { title: 'Notes' },
       },
+      {
+        id: 'book',
+        dirname: 'books',
+        path: '/books/',
+        layout: 'Books',
+        itemLayout: 'Book',
+        itemPermalink: '/:regular',
+        frontmatter: { title: 'Books' },
+      },
     ],
     frontmatters: [
       {
@@ -97,7 +106,7 @@ module.exports = themeConfig => {
       // community plugins
       ['reading-time'],
       ['disqusjs', themeConfig.disqusjs],
-      [require('../plugins/vuepress-plugin-sign')],
+      [require('./plugins/vuepress-plugin-sign')],
     ],
   }
 }
