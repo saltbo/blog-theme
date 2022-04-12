@@ -1,32 +1,46 @@
 <template>
 	<div>
-		<Card>
-			<Toc />
+		<!-- <BookToc /> -->
+		<Sidebar :items="sidebarItems">
+			<template #top>
+				<slot name="sidebar-top" />
+			</template>
+			<template #bottom>
+				<slot name="sidebar-bottom" />
+			</template>
+		</Sidebar>
+
+		<main class="page">
 			<article>
 				<!-- 内容 -->
 				<TContent />
 				<!-- 编辑 -->
 				<PageEdit />
-				<!-- 版权 -->
-				<Copyright />
 			</article>
-		</Card>
+		</main>
 	</div>
 </template>
 
 <script>
+import { resolveSidebarItems } from '@parent-theme/util'
+import Sidebar from '@theme/components/Sidebar.vue'
 import PageEdit from "@parent-theme/components/PageEdit.vue";
-import Toc from "@theme/components/Toc.vue";
-import PostMeta from "@theme/components/PostMeta.vue";
-import Copyright from "@theme/components/Copyright.vue";
 export default {
 	components: {
-		Toc,
-		Copyright,
-		PostMeta,
+		Sidebar,
 		PageEdit,
 	},
-	mounted() {},
+	computed: {
+		sidebarItems() {
+			return resolveSidebarItems(
+				this.$page,
+				this.$page.regularPath,
+				this.$site,
+				this.$localePath
+			)
+		},
+	},
+	mounted() { },
 };
 </script>
 

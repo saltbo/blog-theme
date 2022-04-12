@@ -1,24 +1,20 @@
 <template>
   <div id="app__global-layout">
     <Header />
-    <main class="container lg:mt-5 lg:mx-auto">
-      <Layout />
-    </main>
+    <DefaultGlobalLayout />
     <Footer />
   </div>
 </template>
 
 <script>
-import Layout from "@app/components/GlobalLayout.vue";
+import DefaultGlobalLayout from "@app/components/GlobalLayout.vue";
 import Header from "@theme/components/Header.vue";
 import Footer from "@theme/components/Footer.vue";
-import Toc from "@theme/components/Toc.vue";
 export default {
   components: {
-    Layout,
+    DefaultGlobalLayout,
     Header,
     Footer,
-    Toc,
   },
   data() {
     return {

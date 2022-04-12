@@ -1,10 +1,11 @@
 <template>
-	<div>
+	<BaseLayout>
 		<Card>
 			<article>
 				<header>
 					<h1 class="title" itemprop="name headline">{{ $frontmatter.title }}</h1>
-					<PostMeta :tags="$frontmatter.tags" :author="$frontmatter.author" :date="$frontmatter.date" :location="$frontmatter.location" />
+					<PostMeta :tags="$frontmatter.tags" :author="$frontmatter.author" :date="$frontmatter.date"
+						:location="$frontmatter.location" />
 				</header>
 				<!-- 内容 -->
 				<TContent />
@@ -20,7 +21,7 @@
 		<Card class="mt-5 px-10">
 			<Disqusjs />
 		</Card>
-	</div>
+		</BaseLayout>
 </template>
 
 <script>
@@ -35,7 +36,7 @@ export default {
 		PostMeta,
 		PageEdit,
 	},
-	mounted() {},
+	mounted() { },
 };
 </script>
 

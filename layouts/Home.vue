@@ -1,7 +1,9 @@
 <template>
-  <Card class="py-10">
-    <TContent />
-  </Card>
+  <BaseLayout>
+    <Card class="py-10">
+      <TContent />
+    </Card>
+    </BaseLayout>
 </template>
 
 <script>
@@ -10,7 +12,7 @@ export default {
   components: {},
   computed: {},
   methods: {},
-  mounted() {},
+  mounted() { },
 };
 </script>
 
