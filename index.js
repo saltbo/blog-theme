@@ -2,14 +2,23 @@ const removeMd = require('remove-markdown')
 const path = require('path')
 const pick = require('lodash/pick')
 const moment = require('moment')
+const fs = require('fs')
+const os = require('os')
 
 module.exports = themeConfig => {
   /**
    * Default theme configuration
    */
   themeConfig = Object.assign(themeConfig, {
-    nav: themeConfig.nav || [  ],
+    nav: themeConfig.nav || [],
   })
+  try {
+    const data = fs.readFileSync('./.vuepress/links.json', 'utf8')
+    console.log(data)
+    themeConfig.links = JSON.parse(data)
+  } catch (err) {
+    console.error(err)
+  }
 
   /**
    * Configure blog plugin
@@ -19,39 +28,19 @@ module.exports = themeConfig => {
       {
         id: 'post',
         dirname: 'posts',
-        path: '/posts/',
-        layout: 'Archives',
-        itemLayout: 'Post',
+        path: '/',
+        layout: 'Posts',
         itemPermalink: '/:regular',
-        frontmatter: { title: 'Posts' },
-      },
-      {
-        id: 'note',
-        dirname: 'notes',
-        path: '/posts/',
-        layout: 'Archives',
-        itemLayout: 'Post',
-        itemPermalink: '/:regular',
-        frontmatter: { title: 'Notes' },
-      },
-      {
-        id: 'book',
-        dirname: 'books',
-        path: '/books/',
-        layout: 'Books',
-        itemLayout: 'Book',
-        itemPermalink: '/:regular',
-        frontmatter: { title: 'Books' },
+        frontmatter: { title: '首页' },
       },
     ],
     frontmatters: [
       {
-        id: "tag",
-        keys: ['tag', 'tags'],
-        path: '/tags/',
-        layout: 'Tags',
-        scopeLayout: 'Tag',
-        frontmatter: { title: 'Tags' },
+        id: "categorie",
+        keys: ['categorie', 'categories'],
+        path: '/categories/',
+        layout: 'Categories',
+        frontmatter: { title: '文章' },
       },
     ],
     globalPagination: {
@@ -79,7 +68,7 @@ module.exports = themeConfig => {
   )
 
   return {
-    extend: '@vuepress/theme-default',  // Theme Inheritance => https://vuepress.vuejs.org/theme/inheritance.html
+    // extend: '@vuepress/theme-default',  // Theme Inheritance => https://vuepress.vuejs.org/theme/inheritance.html
     additionalPages: [
       // {
       //   path: '/notes/',
@@ -91,6 +80,9 @@ module.exports = themeConfig => {
     plugins: [
       // official plugins
       ['@vuepress/blog', blogPluginOptions],
+      ['@vuepress/search', {
+        searchMaxSuggestions: 10
+      }],
       ['@vuepress/google-analytics', { 'ga': themeConfig.googleAnalytics }],
       ['@vuepress/pwa', {
         serviceWorker: true,

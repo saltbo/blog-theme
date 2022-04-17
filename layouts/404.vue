@@ -1,13 +1,11 @@
 <template>
-  <div class="box">
-    <section class="theme-container">
-        <article class="content">
-            <h1>404</h1>
-            <blockquote>{{ getMsg() }}</blockquote>
-            <router-link to="/">Take me home.</router-link>
-        </article>
-    </section>
-  </div>
+  <section class="theme-container">
+    <article class="content">
+      <h1>404</h1>
+      <blockquote>{{ getMsg() }}</blockquote>
+      <router-link to="/">Take me home.</router-link>
+    </article>
+  </section>
 </template>
 
 <script>
@@ -21,10 +19,10 @@ const msgs = [
 export default {
   computed: {
   },
-  mounted () {
+  mounted() {
   },
   methods: {
-    getMsg () {
+    getMsg() {
       return msgs[Math.floor(Math.random() * msgs.length)]
     }
   }

@@ -1,7 +1,18 @@
 <template>
   <div id="app__global-layout">
     <Header />
-    <DefaultGlobalLayout />
+    <main class="container is-max-widescreen">
+      <div class="columns is-mobile">
+        <div class="column is-three-quarters">
+          <div class="card default-layout">
+            <DefaultGlobalLayout />
+          </div>
+        </div>
+        <div class="column">
+          <RightCard />
+        </div>
+      </div>
+    </main>
     <Footer />
   </div>
 </template>
@@ -10,11 +21,13 @@
 import DefaultGlobalLayout from "@app/components/GlobalLayout.vue";
 import Header from "@theme/components/Header.vue";
 import Footer from "@theme/components/Footer.vue";
+import RightCard from "@theme/components/RightCard.vue";
 export default {
   components: {
     DefaultGlobalLayout,
     Header,
     Footer,
+    RightCard,
   },
   data() {
     return {
@@ -61,4 +74,10 @@ export default {
 <style lang="stylus" scoped>
 #app__global-layout
   word-wrap: break-word;
+
+main
+  margin-top: -5rem;
+
+.default-layout
+  padding 2rem 4rem
 </style>
