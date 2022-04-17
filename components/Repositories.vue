@@ -56,7 +56,7 @@ export default {
                 axios.get('https://api.github.com/repos/' + repo, {
                     headers: {
                         'Accept': 'application/vnd.github.v3+json',
-                        'Authorization': 'token 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',
+                        'Authorization': 'token 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',
                     }
                 }).then(response => {
                     resolve(response.data)
