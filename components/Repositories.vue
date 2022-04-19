@@ -33,7 +33,6 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            repoNames: [],
             repos: [],
             repoLanguageColors: []
         }
@@ -51,24 +50,9 @@ export default {
                 this.repoLanguageColors = response.data
             })
         },
-        getRepoInfo(repo) {
-            return new Promise((resolve, reject) => {
-                axios.get('https://api.github.com/repos/' + repo, {
-                    headers: {
-                        'Accept': 'application/vnd.github.v3+json',
-                        'Authorization': 'token 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',
-                    }
-                }).then(response => {
-                    resolve(response.data)
-                })
-            })
-        },
         listRepos() {
-            this.repoNames.forEach(repoName => {
-                this.getRepoInfo(repoName).then(repo => {
-                    console.log(repo)
-                    this.repos.push(repo)
-                })
+            axios.get('/snapshot-repos.json').then(response => {
+                this.repos = response.data
             })
         },
     },
