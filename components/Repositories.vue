@@ -1,5 +1,4 @@
 <template>
-
     <div class="card">
         <header class="card-header">
             <p class="card-header-title"> saltbo's repos on GitHub </p>
@@ -7,7 +6,7 @@
 
         <div class="repo-list">
             <div class="repo" v-for="repo, idx in repos" :key="idx">
-                <a class="name">{{ repo.full_name }}</a>
+                <a class="name" :href="repo.html_url" target="_blank">{{ repo.full_name }}</a>
                 <div class="intro">{{ repo.description }}</div>
                 <div class="info">
                     <span class="icon-text">
@@ -33,20 +32,16 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            repos: [],
+            repos: [ ],
             repoLanguageColors: []
         }
     },
     methods: {
         getRepoColor(language) {
-            if (!language) {
-                return
-            }
-
-            return this.repoLanguageColors[language].color
+            return this.repoLanguageColors[language]?.color
         },
         loadLanguageColors() {
-            axios.get('https://raw.githubusercontent.com/ozh/github-colors/master/colors.json').then(response => {
+            axios.get('/language-colors.json').then(response => {
                 this.repoLanguageColors = response.data
             })
         },
@@ -56,7 +51,7 @@ export default {
             })
         },
     },
-    mounted() {
+    beforeMount() {
         this.repoNames = this.$themeConfig.repos
         this.loadLanguageColors()
         this.listRepos()
@@ -65,6 +60,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.repo-list
+    min-height: 200px
+
 .repo
     font-size: 12px
     line-height: 150%;
@@ -84,4 +82,5 @@ export default {
             margin: 0
         .icon-text
             margin-right: 8px
+
 </style>>

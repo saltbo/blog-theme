@@ -39,9 +39,10 @@ export default {
   margin: 0;
 
 .link-item
-  width: 260px
+  width: 230px
   margin: 5px;
   padding 0
+  font-size 12px;
   border-radius: 3px
   
   a 
