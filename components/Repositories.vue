@@ -51,7 +51,7 @@ export default {
             })
         },
         listRepos() {
-            axios.get('/snapshot-repos.json').then(response => {
+            axios.get('/gh-repos-snapshot.json').then(response => {
                 this.repos = response.data
             })
         },

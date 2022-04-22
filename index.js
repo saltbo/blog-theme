@@ -99,6 +99,7 @@ module.exports = themeConfig => {
       ['reading-time'],
       ['disqusjs', themeConfig.disqusjs],
       [require('./plugins/vuepress-plugin-sign')],
+      [require('./plugins/vuepress-plugin-repos'), { repos: themeConfig.repos }],
     ],
   }
 }
