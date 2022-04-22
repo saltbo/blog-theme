@@ -80,4 +80,5 @@ main
 
 .default-layout
   padding 2rem 4rem
+  min-height: 350px
 </style>

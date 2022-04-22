@@ -19,7 +19,7 @@ const fetchGhRepos = async (repos) => {
 module.exports = (options, ctx) => {
   return {
     name: 'gh-repos-snapshot',
-    async ready() {
+    async generated() {
       const repos = await fetchGhRepos(options.repos)
       const reposJSONFile = path.resolve(options.dest || ctx.outDir, "gh-repos-snapshot.json")
       fs.writeFileSync(reposJSONFile, JSON.stringify(repos))

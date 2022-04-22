@@ -8,7 +8,7 @@
           <img :src="link.avatar" alt />
         </div>
         <div class="column info">
-          <h3 class="name">{{ link.name }}</h3>
+          <b class="name">{{ link.name }}</b>
           <div class="intro">{{ link.intro }}</div>
         </div>
       </a>

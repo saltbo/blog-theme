@@ -3,7 +3,7 @@
 		<article style="margin-bottom: 10px">
 			<header>
 				<h1 class="page-title" itemprop="name headline">{{ $frontmatter.title }}</h1>
-				<PostMeta v-if="showMeta" :tags="$frontmatter.tags" :author="$frontmatter.author"
+				<PostMeta v-if="isPostPage" :tags="$frontmatter.tags" :author="$frontmatter.author"
 					:date="$frontmatter.date" :location="$frontmatter.location" />
 			</header>
 
@@ -11,16 +11,16 @@
 			<TContent />
 
 			<!-- 编辑 -->
-			<!-- <PageEdit v-if="pagedit" /> -->
+			<!-- <PageEdit v-if="isPostPage" /> -->
 
 			<!-- 版权 -->
-			<Copyright v-if="copyright" />
+			<Copyright v-if="isPostPage" />
 
 			<!-- 打赏 -->
 			<!-- todo -->
 		</article>
 
-		<Disqusjs v-if="comment" />
+		<Disqusjs v-show="isPostPage" />
 	</div>
 </template>
 
@@ -37,28 +37,14 @@ export default {
 		// PageEdit,
 	},
 	data() {
-		return {
-			meta: true,
-			comment: true,
-			copyright: true
-		}
+		return {}
 	},
 	computed: {
-		showMeta() {
+		isPostPage() {
 			return this.$page.id == 'post'
 		}
 	},
 	mounted() {
-		console.log(this)
-		if (this.$page.frontmatter.meta === false) {
-			this.meta = false
-		}
-		if (this.$page.frontmatter.copyright === false) {
-			this.copyright = false
-		}
-		if (this.$page.frontmatter.comment === false) {
-			this.comment = false
-		}
 
 	},
 };
