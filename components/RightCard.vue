@@ -43,7 +43,7 @@ export default {
 
 <style lang="stylus">
 .right-cards
-  display: fixed
+  position: sticky;
   top: 0
   
   .card
