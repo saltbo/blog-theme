@@ -28,10 +28,10 @@ module.exports = themeConfig => {
       {
         id: 'post',
         dirname: 'posts',
-        path: '/',
+        path: '/posts/',
         layout: 'Posts',
         itemPermalink: '/:regular',
-        frontmatter: { title: '首页' },
+        frontmatter: { title: 'Post' },
       },
     ],
     frontmatters: [
@@ -40,7 +40,7 @@ module.exports = themeConfig => {
         keys: ['categorie', 'categories'],
         path: '/categories/',
         layout: 'Categories',
-        frontmatter: { title: '文章' },
+        frontmatter: { title: '分类' },
       },
     ],
     globalPagination: {
