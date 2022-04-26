@@ -2,7 +2,7 @@
   <div id="app__global-layout">
     <Header />
     <main class="container is-max-widescreen">
-      <div class="columns is-mobile">
+      <div class="columns">
         <div class="column is-three-quarters">
           <div class="card default-layout">
             <DefaultGlobalLayout />
@@ -81,4 +81,8 @@ main
 .default-layout
   padding 2rem 4rem
   min-height: 350px
+
+@media (max-width: $MQMobile)
+  .default-layout
+    padding: 1rem;
 </style>

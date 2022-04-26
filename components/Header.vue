@@ -7,23 +7,10 @@
         <div class="slogan">Keep Growth</div>
       </div>
 
-      <nav class="navbar" role="navigation" aria-label="main navigation">
-        <!-- <div class="navbar-brand">
-          <a class="navbar-item" href="https://bulma.io">
-            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-          </a>
-
-          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
-            data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div> -->
-
-        <div id="navbar" class="navbar-menu">
-          <div class="navbar-start">
-            <a class="navbar-item" v-for="item in userLinks" :key="item.link" :href="item.link"> {{item.text}}</a>
+      <nav class="blog-navbar" role="navigation" aria-label="main navigation">
+        <div id="navbar" class="blog-navbar-menu">
+          <div class="blog-navbar-start">
+            <a class="blog-navbar-item" v-for="item in userLinks" :key="item.link" :href="item.link"> {{item.text}}</a>
           </div>
         </div>
       </nav>
@@ -72,7 +59,7 @@ header
   // height: $headerHeight;
   background: #333;
   color: #fff;
-  padding: 36px 0px 100px 0px
+  padding: 36px 0px 100px 20px
   .title
     color: #fff
     display: inline-block
@@ -81,15 +68,18 @@ header
     color: $grey
     font-size: 12px
     margin-left: 5px
-  .navbar
+  .blog-navbar
     min-height: 0
     background: #333
-  .navbar-item
+  .blog-navbar-item
     color: #fff
-    padding 0 0.5rem
-  .navbar-item:hover
+    padding-right 1rem
+  .blog-navbar-item:hover
     color: #333;
     background: #fff
+
+  @media (max-width: $MQMobile)
+    padding-left: 15px;
   
 
 .menu

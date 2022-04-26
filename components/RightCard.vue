@@ -57,5 +57,10 @@ export default {
 
 .fa-at
   color: #46cf7f
+
+
+@media (max-width: $MQMobile)
+  .right-cards
+    display: none
   
 </style>>

@@ -1,18 +1,15 @@
 <template>
-  <div class="columns is-multiline links">
-    <div class="column is-one-quarter link-item" :style="`background-color: ${link.bgColor}; `"
-      v-for="link in links" :key="link.name">
-
-      <a class="columns" :href="link.link" target="_blank" rel="noopener" :style="`color: ${link.textColor}`">
-        <div class="column is-3 avatar">
-          <img :src="link.avatar" alt />
-        </div>
-        <div class="column info">
-          <b class="name">{{ link.name }}</b>
-          <div class="intro">{{ link.intro }}</div>
-        </div>
-      </a>
-      <i></i>
+  <div class="columns is-multiline is-mobile">
+    <div class="column" v-for="link in links" :key="link.name">
+      <div class="link-item" :style="`background-color: ${link.bgColor}; `">
+        <a class="someone" :href="link.link" target="_blank" rel="noopener" :style="`color: ${link.textColor}`">
+          <img class="avatar" :src="link.avatar" alt />
+          <div class="info">
+            <b class="name">{{ link.name }}</b>
+            <div class="intro">{{ link.intro }}</div>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -35,24 +32,38 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.links
-  margin: 0;
+
+@media (min-width: $MQMobile)
+  .column
+    flex-grow: 0;
 
 .link-item
-  width: 230px
-  margin: 5px;
+  margin: 0;
   padding 0
   font-size 12px;
   border-radius: 3px
   
-  a 
-    margin: 0
-    padding 0
+  .someone 
+    display:flex;align-items:center;
+    width: 225px
+    height: 70px
 
   .avatar 
-    padding 5px
-    img
-      width: 82px
-      vertical-align: middle;
-      border-radius: 50%
+    width: 55px
+    height: 55px
+    vertical-align: middle;
+    margin-left: 5px
+    border-radius: 50%
+
+  .info 
+    width: 150px;
+    margin-left: 10px
+    .name
+      font-size: 14px
+      font-weight: bold
+    .intro
+      overflow: hidden; 
+      white-space: nowrap; 
+      text-overflow: ellipsis;
+
 </style>
