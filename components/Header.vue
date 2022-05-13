@@ -10,7 +10,8 @@
       <nav class="blog-navbar" role="navigation" aria-label="main navigation">
         <div id="navbar" class="blog-navbar-menu">
           <div class="blog-navbar-start">
-            <a class="blog-navbar-item" v-for="item in userLinks" :key="item.link" :href="item.link"> {{item.text}}</a>
+            <a class="blog-navbar-item" v-for="item in userLinks" :key="item.link" :href="item.link"
+              v-bind:class="{ active: active(item.link) }">{{ item.text }}</a>
           </div>
         </div>
       </nav>
@@ -47,6 +48,13 @@ export default {
     },
   },
   methods: {
+    active(link) {
+      if (link == '/' && this.$page.path != '/') {
+        return ''
+      }
+
+      return this.$page.path.startsWith(link)
+    },
     onMenuClick() {
       this.menuOpen = !this.menuOpen;
     },
@@ -73,14 +81,16 @@ header
     background: #333
   .blog-navbar-item
     color: #fff
-    padding-right 1rem
+    padding .2rem .4rem
+  .active
+    background: #242424
+
   .blog-navbar-item:hover
     color: #333;
     background: #fff
 
   @media (max-width: $MQMobile)
     padding-left: 15px;
-  
 
 .menu
   overflow: hidden;

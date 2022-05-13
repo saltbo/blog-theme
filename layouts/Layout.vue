@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<article style="margin-bottom: 10px">
+		<article style="margin-bottom: 50px">
 			<header>
 				<h1 class="page-title" itemprop="name headline">{{ $frontmatter.title }}</h1>
 				<PostMeta v-if="isPostPage" :tags="$frontmatter.tags" :author="$frontmatter.author"
