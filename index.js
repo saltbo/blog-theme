@@ -28,7 +28,7 @@ module.exports = themeConfig => {
       {
         id: 'post',
         dirname: 'posts',
-        path: '/posts/',
+        path: '/blog/posts/',
         layout: 'Posts',
         itemPermalink: '/:regular',
         frontmatter: { title: 'Post' },
@@ -38,9 +38,16 @@ module.exports = themeConfig => {
       {
         id: "categorie",
         keys: ['categorie', 'categories'],
-        path: '/categories/',
+        path: '/blog/categories/',
         layout: 'Categories',
         frontmatter: { title: '分类' },
+      },
+      {
+        id: "tag",
+        keys: ['tag', 'tags'],
+        path: '/blog/tags/',
+        layout: 'Tags',
+        frontmatter: { title: '标签' },
       },
     ],
     globalPagination: {
@@ -68,6 +75,14 @@ module.exports = themeConfig => {
   )
 
   return {
+    additionalPages: [
+      {
+        path: '/archives/',
+        frontmatter: {
+          layout: 'Archives'
+        }
+      }
+    ],
     plugins: [
       // official plugins
       ['@vuepress/blog', blogPluginOptions],

@@ -2,9 +2,9 @@
   <div>
     <div class="tabs is-small">
       <ul>
-        <li class="is-active"><a href="/posts/">近期发布</a></li>
-        <li><a href="/tags/">标签</a></li>
-        <li><a href="/archives/">归档</a></li>
+        <li class="is-active"><a href="/">近期发布</a></li>
+        <li><a href="/tags">标签</a></li>
+        <li><a href="/archives">归档</a></li>
       </ul>
     </div>
     <div class="group">
@@ -24,14 +24,26 @@ export default {
   components: {},
   methods: {
     archives() {
-      console.log(this.$site)
+      console.log(this.$site.pages)
       let posts = this.$site.pages.filter((item) => {
         if (item.frontmatter.draft) {
           return false
         }
 
-        return item.id == this.$frontmatter.id;
+        return item.id == "post";
       });
+      this.sortPostsByDate(posts);
+
+      // insert the year item into the posts array.
+      let lastYear;
+      for (let i = 0; i < posts.length; i++) {
+        let year = posts[i].frontmatter.date.moment("YYYY");
+        if (year != lastYear) {
+          posts.splice(i, 0, { title: year });
+        }
+
+        lastYear = year;
+      }
 
       return posts;
     }

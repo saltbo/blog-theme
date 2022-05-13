@@ -2,18 +2,25 @@
 <template>
   <header>
     <div class="container is-max-widescreen">
-      <div class="logo">
-        <div class="title">{{ $site.title }}</div>
-        <div class="slogan">Keep Growth</div>
+      <div>
+        <div class="avatar">
+
+        </div>
+        <div class="logo">
+          <div class="title">{{ $site.title }}</div>
+          <div class="slogan">Keep Growth</div>
+        </div>
       </div>
 
-      <nav class="blog-navbar" role="navigation" aria-label="main navigation">
-        <div id="navbar" class="blog-navbar-menu">
-          <div class="blog-navbar-start">
-            <a class="blog-navbar-item" v-for="item in userLinks" :key="item.link" :href="item.link"> {{item.text}}</a>
-          </div>
-        </div>
-      </nav>
+      <div class="tabs is-toggle is-fullwidth is-small">
+        <ul>
+          <li :class="active(item)" v-for="item in userLinks" :key="item.link">
+            <a :href="item.link">
+              <span>{{ item.text }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </header>
 </template>
@@ -47,6 +54,14 @@ export default {
     },
   },
   methods: {
+    active(item) {
+      console.log(item.link, this.$page.path)
+      if (item.link == '/' && this.$page.path != '/') {
+        return ''
+      }
+
+      return this.$page.path.startsWith(item.link) ? 'is-active' : ''
+    },
     onMenuClick() {
       this.menuOpen = !this.menuOpen;
     },
@@ -57,26 +72,28 @@ export default {
 <style lang="stylus" scoped>
 header
   // height: $headerHeight;
-  background: #333;
-  color: #fff;
-  padding: 36px 0px 100px 20px
+  // background: #333;
+  // color: #fff;
+  // padding: 36px 0px 100px 20px
   .title
-    color: #fff
+    // color: #fff
     display: inline-block
   .slogan
     display: inline-block
     color: $grey
     font-size: 12px
     margin-left: 5px
-  .blog-navbar
-    min-height: 0
-    background: #333
-  .blog-navbar-item
-    color: #fff
-    padding-right 1rem
-  .blog-navbar-item:hover
-    color: #333;
-    background: #fff
+  // .blog-navbar
+  //   min-height: 0
+  //   background: #333
+  // .blog-navbar-item
+  //   color: #fff
+  //   padding-right 1rem
+  // .blog-navbar-item:hover
+  //   color: #333;
+  //   background: #fff
+  .tabs
+    padding 10px 0 20px 0
 
   @media (max-width: $MQMobile)
     padding-left: 15px;
